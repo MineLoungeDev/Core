@@ -17,12 +17,12 @@ public class Main extends JavaPlugin implements Listener {
 	@EventHandler
 	public void JoinMessage(PlayerJoinEvent event){
 		Player player = event.getPlayer();
-		event.setJoinMessage(ChatColor.DARK_GRAY + "[" + ChatColor.GREEN + "+" + ChatColor.DARK_GRAY + "]" + ChatColor.GRAY + player.getName());
+		event.setJoinMessage(ChatColor.DARK_GRAY + "[" + ChatColor.GREEN + "+" + ChatColor.DARK_GRAY + "]" + " " + ChatColor.GRAY + player.getName());
 	}
 	
 	@EventHandler
 	public void QuitMessage(PlayerQuitEvent event){
 		Player player = event.getPlayer();
-		event.setQuitMessage(ChatColor.DARK_GRAY + "[" + ChatColor.RED + "-" + ChatColor.DARK_GRAY + "]" + ChatColor.GRAY + player.getName());
+		event.setQuitMessage(ChatColor.DARK_GRAY + "[" + ChatColor.RED + "-" + ChatColor.DARK_GRAY + "]" + " " + ChatColor.GRAY + player.getName());
 	}
 }
