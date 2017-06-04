@@ -17,6 +17,8 @@ public class Main extends JavaPlugin implements Listener {
 		plugin = this;
 		
 		getServer().getPluginManager().registerEvents(this, this);
+		
+		getCommand("staff").setExecutor(new StaffCommand());
 	}
 	
 	@EventHandler

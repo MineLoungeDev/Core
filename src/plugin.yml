@@ -4,3 +4,8 @@ version: 6.9
 author: Chaspyr
 authors: [Chaspyr, Derkades]
 description: Core plugin for the MineLounge server
+
+commands:
+  staff:
+    description: aisjdm
+    
