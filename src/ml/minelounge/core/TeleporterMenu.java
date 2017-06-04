@@ -25,16 +25,17 @@ public class TeleporterMenu {
 	});
 
 	public static void open(Player player) {
-		fillMenu();
+		int index = 0;
+		for (Player online : Bukkit.getOnlinePlayers()){
+			if (online.getName().equals(player.getName()))
+				continue;
+			
+			ItemStack item = new ItemBuilder(online.getName()).create();
+			menu.setOption(index, item, ChatColor.GRAY + online.getName());
+		    index++;
+		}
+		
 		menu.open(player);
 	}
 
-	private static void fillMenu() {
-		int index = 0;
-		for (Player player : Bukkit.getOnlinePlayers()){
-			ItemStack item = new ItemBuilder(player.getName()).create();
-			menu.setOption(index, item, ChatColor.GRAY + player.getName());
-		    index++;
-		}
-	}
 }
