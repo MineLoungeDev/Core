@@ -12,7 +12,7 @@ import xyz.derkades.utils.ItemBuilder;
 
 public class TeleporterMenu {
 
-	private static IconMenu menu = new IconMenu("Class menu", 1 * 9, new IconMenu.OptionClickEventHandler() {
+	private static IconMenu menu = new IconMenu(ChatColor.AQUA + "Player Teleporter", 1 * 9, new IconMenu.OptionClickEventHandler() {
 
 		@Override
 		public void onOptionClick(OptionClickEvent event) {
