@@ -14,10 +14,9 @@ public class Main extends JavaPlugin implements Listener {
 	
 	public void JoinMessage(PlayerJoinEvent event){
 		event.setJoinMessage(ChatColor.DARK_GRAY + "[" + ChatColor.GREEN + "+" + ChatColor.DARK_GRAY + "]");
-		
 	}
+	
 	public void QuitMessage(PlayerQuitEvent event){
 		event.setQuitMessage(ChatColor.DARK_GRAY + "[" + ChatColor.RED + "-" + ChatColor.DARK_GRAY + "]");
-		
 	}
 }
