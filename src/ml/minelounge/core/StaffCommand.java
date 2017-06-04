@@ -4,6 +4,7 @@ import java.io.File;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -26,16 +27,19 @@ public class StaffCommand implements CommandExecutor {
 		File file = new File(Main.plugin.getDataFolder() + "/staffinv", player.getUniqueId() + ".yml");
 		
 		if(file.exists()){
-			player.setAllowFlight(false);
-			player.setFlying(false);
-			
+			if(player.getGameMode() != GameMode.CREATIVE){
+				player.setAllowFlight(false);
+				player.setFlying(false);
+				
+			}
+				
 			player.removePotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
 
 			InvUtils.restoreInventory(file, player.getInventory());
-			
+				
 			for (Player online : Bukkit.getOnlinePlayers())
 				online.showPlayer(player);
-			
+				
 			return true;
 		} else {
 			player.setAllowFlight(true);
