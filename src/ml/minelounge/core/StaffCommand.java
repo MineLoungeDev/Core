@@ -18,6 +18,8 @@ import xyz.derkades.utils.ItemBuilder;
 
 public class StaffCommand implements CommandExecutor {
 	
+	public static final ItemStack TELEPORTER = new ItemBuilder(Material.COMPASS).setName(ChatColor.AQUA + "Player Teleporter").setLore(ChatColor.GRAY + "Teleport to players around the server").create();
+	
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args){
 		Player player = (Player) sender;
@@ -44,8 +46,7 @@ public class StaffCommand implements CommandExecutor {
 			InvUtils.saveIntentory(file, player.getInventory());
 			InvUtils.clearInventory(player.getInventory());
 			
-			ItemStack item = new ItemBuilder(Material.COMPASS).setName(ChatColor.AQUA + "Player Teleporter").setLore(ChatColor.GRAY + "Teleport to players around the server").create();
-			player.getInventory().addItem(item);
+			player.getInventory().addItem(TELEPORTER);
 			
 			for (Player online : Bukkit.getOnlinePlayers())
 				online.hidePlayer(player);
