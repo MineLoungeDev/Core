@@ -10,8 +10,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin implements Listener {
 	
+	public static Main plugin;
+	
 	@Override	
 	public void onEnable(){
+		plugin = this;
+		
 		getServer().getPluginManager().registerEvents(this, this);
 	}
 	
