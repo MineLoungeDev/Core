@@ -2,6 +2,7 @@ package ml.minelounge.core;
 
 import java.io.File;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -25,19 +26,30 @@ public class StaffCommand implements CommandExecutor {
 		if(file.exists()){
 			player.setAllowFlight(false);
 			player.setFlying(false);
+			
 			player.removePotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
-			player.removePotionEffect(PotionEffectType.INVISIBILITY);
+
 			InvUtils.restoreInventory(file, player.getInventory());
+			
+			for (Player online : Bukkit.getOnlinePlayers())
+				online.showPlayer(player);
+			
 			return true;
 		} else {
 			player.setAllowFlight(true);
 			player.setFlying(true);
+			
 			player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, Integer.MAX_VALUE, 255, false, false));
-			player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 255, false, false));
-			InvUtils.saveIntentory(file, player.getInventory());;
+
+			InvUtils.saveIntentory(file, player.getInventory());
 			InvUtils.clearInventory(player.getInventory());
+			
 			ItemStack item = new ItemBuilder(Material.COMPASS).setName(ChatColor.AQUA + "Player Teleporter").setLore(ChatColor.GRAY + "Teleport to players around the server").create();
 			player.getInventory().addItem(item);
+			
+			for (Player online : Bukkit.getOnlinePlayers())
+				online.hidePlayer(player);
+			
 			return true;
 		}
 	}
