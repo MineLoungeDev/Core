@@ -28,5 +28,13 @@ public class InvUtils {
         inventory.setContents(content);
         file.delete();
     }
+    
+    public static void clearInventory(PlayerInventory inventory){
+    	for (ItemStack item : inventory.getContents())
+    		inventory.remove(item);
+    	
+    	for (ItemStack item : inventory.getArmorContents())
+    		inventory.remove(item);
+    }
 
 }
