@@ -3,4 +3,4 @@ main: ml.minelounge.core.Main
 version: 6.9
 author: Chaspyr
 authors: [Chaspyr, Derkades]
-description: asdoiucmjasd
+description: Core plugin for the MineLounge server
