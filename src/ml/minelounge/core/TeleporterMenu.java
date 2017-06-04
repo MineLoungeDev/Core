@@ -1,11 +1,14 @@
 package ml.minelounge.core;
 
-import org.bukkit.Material;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.SkullMeta;
 
 import xyz.derkades.utils.IconMenu;
 import xyz.derkades.utils.IconMenu.OptionClickEvent;
+import xyz.derkades.utils.ItemBuilder;
 
 public class TeleporterMenu {
 
@@ -13,7 +16,11 @@ public class TeleporterMenu {
 
 		@Override
 		public void onOptionClick(OptionClickEvent event) {
-
+			ItemStack clickedItem = event.getItem();
+			String skullOwner = ((SkullMeta) clickedItem.getItemMeta()).getOwner();
+			Player target = Bukkit.getPlayerExact(skullOwner);
+			Player player = event.getPlayer();
+			player.teleport(target);
 		}
 	});
 
@@ -23,8 +30,11 @@ public class TeleporterMenu {
 	}
 
 	private static void fillMenu() {
-		ItemStack voorbeeldItem = new ItemStack(Material.STONE);
-		menu.setOption(0, voorbeeldItem, "Voorbeeld");
+		int index = 0;
+		for (Player player : Bukkit.getOnlinePlayers()){
+			ItemStack item = new ItemBuilder(player.getName()).create();
+			menu.setOption(index, item, ChatColor.GRAY + player.getName());
+		    index++;
+		}
 	}
-
 }
