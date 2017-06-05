@@ -1,5 +1,6 @@
 package ml.minelounge.core;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -42,6 +43,14 @@ public class Main extends JavaPlugin implements Listener {
 		if (inventory.getItemInHand().equals(StaffCommand.TELEPORTER)){
 			//Speler klikt op teleporter -> menu openen
 			TeleporterMenu.open(player);
+		} else if (inventory.getItemInHand().equals(StaffCommand.VANISH_ON)) {
+			for (Player online : Bukkit.getOnlinePlayers())
+				online.showPlayer(player);
+			inventory.setItem(1, StaffCommand.VANISH_OFF);
+		} else if (inventory.getItemInHand().equals(StaffCommand.VANISH_OFF)) {
+			for (Player online : Bukkit.getOnlinePlayers())
+				online.hidePlayer(player);
+			inventory.setItem(1, StaffCommand.VANISH_ON);
 		}
 	}
 }

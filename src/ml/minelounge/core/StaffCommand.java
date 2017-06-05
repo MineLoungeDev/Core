@@ -20,6 +20,8 @@ import xyz.derkades.utils.ItemBuilder;
 public class StaffCommand implements CommandExecutor {
 	
 	public static final ItemStack TELEPORTER = new ItemBuilder(Material.COMPASS).setName(ChatColor.AQUA + "Player Teleporter").setLore(ChatColor.GRAY + "Teleport to players around the server").create();
+	public static final ItemStack VANISH_ON = new ItemBuilder(Material.INK_SACK).setName(ChatColor.GREEN + "Vanish On").setLore(ChatColor.GRAY + "Toggle your vanish on/off").setDamage(8).create();
+	public static final ItemStack VANISH_OFF = new ItemBuilder(Material.INK_SACK).setName(ChatColor.GRAY + "Vanish Off").setLore(ChatColor.GRAY + "Toggle your vanish on/off").setDamage(10).create();
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args){
@@ -56,7 +58,8 @@ public class StaffCommand implements CommandExecutor {
 			InvUtils.saveIntentory(file, player.getInventory());
 			InvUtils.clearInventory(player.getInventory());
 			
-			player.getInventory().addItem(TELEPORTER);
+			player.getInventory().setItem(0, TELEPORTER);
+			player.getInventory().setItem(1, VANISH_ON);
 			
 			for (Player online : Bukkit.getOnlinePlayers())
 					online.hidePlayer(player);
