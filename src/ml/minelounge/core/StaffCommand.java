@@ -24,22 +24,29 @@ public class StaffCommand implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args){
 		Player player = (Player) sender;
+		
+		if(!player.hasPermission("ml.staff")){
+			player.sendMessage("You don't have permission to use this command!");
+			return true;
+			
+		}
+		
 		File file = new File(Main.plugin.getDataFolder() + "/staffinv", player.getUniqueId() + ".yml");
 		
 		if(file.exists()){
 			if(player.getGameMode() != GameMode.CREATIVE){
 				player.setAllowFlight(false);
 				player.setFlying(false);
-				
+					
 			}
-				
+					
 			player.removePotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
 
 			InvUtils.restoreInventory(file, player.getInventory());
-				
+					
 			for (Player online : Bukkit.getOnlinePlayers())
 				online.showPlayer(player);
-				
+					
 			return true;
 		} else {
 			player.setAllowFlight(true);
@@ -53,7 +60,7 @@ public class StaffCommand implements CommandExecutor {
 			player.getInventory().addItem(TELEPORTER);
 			
 			for (Player online : Bukkit.getOnlinePlayers())
-				online.hidePlayer(player);
+					online.hidePlayer(player);
 			
 			return true;
 		}
