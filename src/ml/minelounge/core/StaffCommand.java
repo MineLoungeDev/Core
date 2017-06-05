@@ -25,19 +25,18 @@ public class StaffCommand implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args){
 		Player player = (Player) sender;
 		
-		if(!player.hasPermission("ml.staff")){
+		if (!player.hasPermission("ml.staff")){
 			player.sendMessage("You don't have permission to use this command!");
 			return true;
-			
 		}
 		
 		File file = new File(Main.plugin.getDataFolder() + "/staffinv", player.getUniqueId() + ".yml");
 		
-		if(file.exists()){
-			if(player.getGameMode() != GameMode.CREATIVE){
+		if (file.exists()){
+			
+			if (player.getGameMode() != GameMode.CREATIVE){
 				player.setAllowFlight(false);
 				player.setFlying(false);
-					
 			}
 					
 			player.removePotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
